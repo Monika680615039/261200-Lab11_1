@@ -93,7 +93,7 @@ public class Main implements ApplicationListener {
         float worldHeight = viewport.getWorldHeight();
         float bucketWidth = bucketSprite.getWidth();
 
-        // จำกัดไม่ให้ถังน้ำเลื่อนหลุดขอบจอ
+
         bucketSprite.setX(MathUtils.clamp(bucketSprite.getX(), 0, worldWidth - bucketWidth));
 
         float delta = Gdx.graphics.getDeltaTime();
@@ -107,11 +107,10 @@ public class Main implements ApplicationListener {
             dropSprite.translateY(-2f * delta);
             dropRectangle.set(dropSprite.getX(), dropSprite.getY(), dropWidth, dropHeight);
 
-            // ตรวจสอบเมื่อหยดน้ำตกเลยขอบล่าง
             if (dropSprite.getY() < -dropHeight) {
                 dropSprites.removeIndex(i);
             } else if (bucketRectangle.overlaps(dropRectangle)) {
-                // เก็บหยดน้ำได้สำเร็จ
+
                 dropSprites.removeIndex(i);
                 dropSound.play();
             }
